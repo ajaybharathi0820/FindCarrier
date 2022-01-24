@@ -9,21 +9,21 @@
         transform: scale(1.1);
         z-index: 1;
     }
-
 </style>
-<div class="row">
-    @foreach (var data in Model)
-    {
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">@data.TransportName</h5>
-                <p class="card-text">Address-@data.Address</p>
-                <p class="card-text">City-@data.City</p>
-                <p class="card-text">State-@data.State</p>
-                <p class="card-text">Contact No-@data.ContactNo</p>
-                <a href="#" class="btn btn-primary">Show Vehicles</a>
+<div class="container">
+    <div class="row">
+        @foreach (var data in Model)
+        {
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title " style="font-weight:bold ; font-size:large">@data.TransportName</h5>
+                    <p class="card-text">Address-@data.Address</p>
+                    <p class="card-text">City-@data.City</p>
+                    <p class="card-text">State-@data.State</p>
+                    <p class="card-text">Contact No-@data.ContactNo</p>
+                    <a href="#" class="btn btn-primary">Show Vehicles</a>
+                </div>
             </div>
-        </div>
-    }
+        }
     </div>
+</div>
