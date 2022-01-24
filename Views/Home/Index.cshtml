@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<html>
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <div style=" background-image: url('../../assests/images/CHome.jpg');">
+        <div class="container-fluid center-block" style="text-align:center; color:white">
+            <br><br><br><br><br><br><br><br>
+            <p style="font-size:70px;color:yellow">Welcome to Find Carrier..!</p>
+            <br>
+
+            @if (Request.IsAuthenticated)
+            {
+                if (this.User.IsInRole("Customer"))
+                {
+                    <p style="font-size:xx-large; color:gold">You Can Find Here</p>
+                    <p style="font-size:xx-large">
+                        Safe & Reliable Logistic solution.<br />
+                        The best logistic serive providers.
+                    </p>
+                    <div class="clear">
+                        <input class="text" style="color:black" type="text" placeholder="Enter Location" />
+                        <input type="submit" class="btn btn-danger" value="Search">
+                    </div>
+                }
+                if (this.User.IsInRole("Transporter"))
+                {
+                    <p style="font-size:xx-large; color:gold">Grow your Business</p>
+                    <p style="font-size:xx-large">
+                        Lots of customer,Earn more<br />
+                        This is the best platform for your business.
+                    </p>
+
+                }
+
+            }
+            else
+            {
+                <p style="font-size:xx-large; color:gold">You Can Find Here</p>
+                <p style="font-size:xx-large">
+                    Safe & Reliable Logistic solution.<br />
+                    The best logistic serive providers.
+                </p>
+                <div>
+                    <p style="font-size:xx-large; color:yellow">Register Now to find your carrier</p>
+                    <a class="btn btn-warning btn-sm" href="@Url.Action("Register","Account")">Register</a>
+                </div>
+            }
+
+            <br><br><br><br><br><br><br><br><br><br><br><br>
+        </div>
+    </div>
+    
+</body>
+</html>

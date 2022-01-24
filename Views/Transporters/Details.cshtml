@@ -1,0 +1,69 @@
+﻿@model FindCarrier.Models.Transporter
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Transporter</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <h1>Name :@Model.TransportName</h1>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransportName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransportName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OwnerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OwnerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.State)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.State)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Edit")">Edit</a>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.TransporterIDS})*@ 
+
+</p>

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<FindCarrier.Models.Vehicle>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table  table-bordered ">
+    <tr class="bg-primary">
+        <th>
+            @Html.DisplayNameFor(model => model.Transporter.TransportName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VehicleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VehicleNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoadCapacity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Transporter.TransportName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VehicleName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VehicleNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoadCapacity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @*<a class="btn btn-primary" href="@Url.Action("edit")">edit</a>
+            <a class="btn btn-warning" href="@Url.Action("details")">details</a>
+            <a class="btn btn-danger" href="@Url.Action("delete")">delete</a>*@
+
+            @Html.ActionLink("Edit", "Edit", new { id = item.VehicleID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.VehicleID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.VehicleID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,61 @@
+﻿@model FindCarrier.Models.Vehicle
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Vehicle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Transporter.TransportName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Transporter.TransportName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoadCapacity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoadCapacity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a class="btn btn-primary" href="@Url.Action("edit")">Edit</a>
+
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.VehicleID })*@
+    <a class="btn btn-warning" href="@Url.Action("index")">Back</a>
+
+</p>

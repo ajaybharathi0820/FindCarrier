@@ -1,0 +1,65 @@
+﻿@model FindCarrier.Models.Vehicle
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Vehicle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <h1>name:@Model.VehicleName</h1>
+        <dt>
+            @Html.DisplayNameFor(model => model.Transporter.TransportName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Transporter.TransportName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoadCapacity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoadCapacity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-primary" /> 
+            <a class="btn btn-warning" href="@Url.Action("index")">Back</a>
+        </div>
+    }
+</div>
