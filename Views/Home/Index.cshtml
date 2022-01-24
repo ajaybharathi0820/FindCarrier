@@ -1,4 +1,5 @@
-﻿@{
+﻿@model FindCarrier.Models.City
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -7,8 +8,8 @@
     <title>Home</title>
 </head>
 <body>
-    <div style=" background-image: url('../../assests/images/CHome.jpg');">
-        <div class="container-fluid center-block" style="text-align:center; color:white">
+    <div  style=" background-image: url('../../assests/images/CHome.jpg'); background-repeat:no-repeat">
+        <div class="container center-block" style="text-align:center; color:white">
             <br><br><br><br><br><br><br><br>
             <p style="font-size:70px;color:yellow">Welcome to Find Carrier..!</p>
             <br>
@@ -22,9 +23,8 @@
                         Safe & Reliable Logistic solution.<br />
                         The best logistic serive providers.
                     </p>
-                    <div class="clear">
-                        <input class="text" style="color:black" type="text" placeholder="Enter Location" />
-                        <input type="submit" class="btn btn-danger" value="Search">
+                    <div >
+                        @Html.Partial("_HomePartial")
                     </div>
                 }
                 if (this.User.IsInRole("Transporter"))
@@ -54,6 +54,6 @@
             <br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
     </div>
-    
+
 </body>
 </html>

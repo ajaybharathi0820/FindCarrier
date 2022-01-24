@@ -58,7 +58,7 @@ namespace FindCarrier.Controllers
                 }
                 db.Transporters.Add(transporter);
                 db.SaveChanges();
-                return RedirectToAction("index");
+                return RedirectToAction("index", "Home");
             }
             transporter.cities = db.Cities.ToList();
             transporter.states = db.States.ToList();

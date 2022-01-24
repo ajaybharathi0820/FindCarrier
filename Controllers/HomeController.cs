@@ -9,9 +9,15 @@ namespace FindCarrier.Controllers
 {
     public class HomeController : Controller
     {
+        private FindCarrierDbModel db = new FindCarrierDbModel();
+
         public ActionResult Index()
         {
-            return View();
+           
+                ViewBag.CityID = new SelectList(db.Cities, "CityID", "CityName");
+                return View();
+           
+            
         }
 
         public ActionResult TList()

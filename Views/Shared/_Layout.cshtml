@@ -26,7 +26,7 @@
                 {
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li>@Html.ActionLink("Dashboard", "Dashboard", "home")</li>
+                            <li>@Html.ActionLink("Dashboard", "#", "home")</li>
                             <li>@Html.ActionLink("City", "index", "cities")</li>
                             <li>@Html.ActionLink("State", "index", "states")</li>
                             <li>@Html.ActionLink("Roles", "index", "Role")</li>
@@ -41,7 +41,7 @@
                 {
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li>@Html.ActionLink("Profile", "Details", "Transporters")</li>
+                            @*<li>@Html.ActionLink("Profile", "Details", "Transporters")</li>*@
                             <li>@Html.ActionLink("Vehicles", "Details", "Vehicles")</li>
                             <li>@Html.ActionLink("Manage Vehicles", "Index", "Vehicles")</li>
                         </ul>
@@ -56,7 +56,7 @@
                         <ul class="nav navbar-nav">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("Transporter", "TList", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                         </ul>
                         @Html.Partial("_LoginPartial")
 

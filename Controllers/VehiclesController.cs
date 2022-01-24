@@ -17,6 +17,7 @@ namespace FindCarrier.Controllers
         // GET: Vehicles
         public ActionResult Index()
         {
+            
             var vehicles = db.Vehicles.Include(v => v.Transporter);
             return View(vehicles.ToList());
         }
