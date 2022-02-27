@@ -1,0 +1,121 @@
+﻿@model IEnumerable<FindCarrier.Models.Vehicle>
+@{
+    ViewBag.Title = "Tlist";
+}
+
+<style>
+    body {
+        background-color:aquamarine;
+    }
+
+    .ratings i {
+        font-size: 16px;
+        color: red
+    }
+
+    .strike-text {
+        color: red;
+        text-decoration: line-through
+    }
+
+    .product-image {
+        width: 100%
+    }
+
+    .dot {
+        height: 7px;
+        width: 7px;
+        margin-left: 6px;
+        margin-right: 6px;
+        margin-top: 3px;
+        background-color: blue;
+        border-radius: 50%;
+        display: inline-block
+    }
+
+    .spec-1 {
+        color: #938787;
+        font-size: 15px
+    }
+
+    h5 {
+        font-weight: 400
+    }
+
+    .para {
+        font-size: 16px
+    }
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width:auto;
+    }
+
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+    }
+
+    .container {
+        padding: 2px 16px;
+    }
+    .vl {
+        border-left: 6px solid #5B2C6F;
+        height: auto;
+    } 
+
+
+</style>
+
+
+@if (Model.Count() == 0)
+{
+    <h3 class="center-block">No Vehicles Are Found </h3>
+
+}
+else
+{
+
+    foreach (var data in Model)
+    {
+        <br />
+        <div class="container mt-5 mb-5">
+            <div class="d-flex justify-content-center row">
+                
+                    <div class="row p-2 bg-white border rounded card vl" style=" padding: 25px 25px 25px 25px; background-color: #D7BDE2 ">
+                        <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="~/Images/@data.VehicleImage"></div>
+                        <div class="col-md-6 mt-1">
+                            <h1 style="font-weight:600 ; text-transform:uppercase">@data.VehicleName</h1>
+                            <div class="d-flex flex-row">
+                                <h5 style="color:black;font-weight:250">Vehicle No-<span style="text-transform:uppercase; color:crimson;font-weight:bold">@data.VehicleNo</span></h5>
+                            </div>
+                            <hr style="border-top: 3px dashed #5B2C6F ">
+                            <div class="mt-1 mb-1 spec-1" style="color:black"><span class="dot"></span>Body Type - <span style="text-transform:capitalize">@data.BodyType</span></div>
+                            <div class="mt-1 mb-1 spec-1"  style="color:black"><span class="dot"></span>Load Capacity - <span style="text-transform:capitalize">@data.LoadCapacity Ton</span></div>
+                        </div>
+                        <div class="align-items-center col-md-3 border-left mt-1" style="text-align:center">
+                            <div class="d-flex flex-row align-items-center">
+                                <h2 class="mr-1" style="color:red">Amount</h2>
+                            </div>
+                            <div class="d-flex flex-row align-items-center">
+                                <h4 class="mr-1" style="text-align:inherit">₹@((double)data.Amount)/Km</h4>
+                            </div>
+                            @if (this.User.IsInRole("Transporter"))
+                            {
+                            <a class="btn btn-primary" href="@Url.Action("edit", data)">Edit</a>
+                            <a class="btn btn-danger" href="@Url.Action("Delete", data)">Delete</a>
+                            }
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+
+    }
+
+}
+
+
+
+
+
+

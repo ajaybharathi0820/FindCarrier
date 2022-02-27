@@ -1,19 +1,18 @@
-﻿@model IEnumerable<FindCarrier.Models.State>
+﻿@model IEnumerable<FindCarrier.Models.BodyType>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>State</h2>
+<h2>BodyTypes</h2>
 
 <p>
     <a class="btn btn-primary" href="@Url.Action("create")">Add new</a>
-
 </p>
-<table class="table table-bordered" >
-    <tr class="bg-primary">
+<table class="table">
+    <tr>
         <th>
-            @Html.DisplayNameFor(model => model.StateName)
+            @Html.DisplayNameFor(model => model.VehicleType)
         </th>
         <th>Action</th>
     </tr>
@@ -21,7 +20,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.StateName)
+            @Html.DisplayFor(modelItem => item.VehicleType)
         </td>
         <td>
             <a class="btn btn-primary" href="@Url.Action("edit",item)">Edit</a>

@@ -20,6 +20,26 @@ namespace FindCarrier.Controllers
             return View(db.Transporters.ToList());
         }
 
+
+        public ActionResult TList(string search)
+        {
+            if (this.User.IsInRole("Admin"))
+            {
+                List<Transporter> transporter = db.Transporters.ToList();
+                return View(transporter);
+            }
+            if (this.User.IsInRole("Customer"))
+            {
+                List<Transporter> transporters = db.Transporters.Where(x => x.City.Contains(search)).ToList();
+                ViewBag.Search = search;
+                return View(transporters);
+            }
+            return View();
+
+        }
+
+
+
         // GET: Transporters/Details/5
         public ActionResult Details(int? id)
         {

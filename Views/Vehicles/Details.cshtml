@@ -10,13 +10,6 @@
     <h4>Vehicle</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Transporter.TransportName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Transporter.TransportName)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.VehicleName)
@@ -32,6 +25,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.VehicleNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BodyType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BodyType)
         </dd>
 
         <dt>
@@ -53,9 +54,9 @@
     </dl>
 </div>
 <p>
-    <a class="btn btn-primary" href="@Url.Action("edit")">Edit</a>
+    @*<a class="btn btn-primary" href="@Url.Action("edit",new { id=Model.VehicleID})">Edit</a>*@
 
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.VehicleID })*@
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VehicleID })
     <a class="btn btn-warning" href="@Url.Action("index")">Back</a>
 
 </p>

@@ -8,26 +8,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login </title>
+    <title >Login </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content=" Login Form " />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <link href="~/Login/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 
 </head>
 <body>
     <!-- main -->
     <div class="main-w3layouts wrapper">
         <br />
-        <h1> Login </h1>
+        <h1 style="color:gold"> Login </h1>
         <div class="main-agileinfo">
             <div class="agileits-top">
                 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
                     @Html.TextBoxFor(m => m.UserName, new { @placeholder = "Username" })
+                    @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
                     @Html.PasswordFor(m => m.Password, new { @placeholder = "Password" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     <div class="wthree-text">
                         <ul>
                             <li>

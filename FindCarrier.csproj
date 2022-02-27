@@ -170,6 +170,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BodyTypesController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -200,6 +201,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BodyType.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\FindCarrierDbModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -213,8 +215,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assests\images\CHome.jpg" />
-    <Content Include="assests\images\hometruck.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -223,6 +223,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="HomePage\css\animate.min.css" />
+    <Content Include="HomePage\css\bootstrap.min.css" />
+    <Content Include="HomePage\css\jquery-ui.css" />
+    <Content Include="HomePage\css\jquery.mCustomScrollbar.min.css" />
+    <Content Include="HomePage\css\meanmenu.css" />
+    <Content Include="HomePage\css\nice-select.css" />
+    <Content Include="HomePage\css\normalize.css" />
+    <Content Include="HomePage\css\owl.carousel.min.css" />
+    <Content Include="HomePage\css\responsive.css" />
+    <Content Include="HomePage\css\slick.css" />
+    <Content Include="HomePage\css\style.css" />
+    <Content Include="HomePage\js\bootstrap.bundle.min.js" />
+    <Content Include="HomePage\js\custom.js" />
+    <Content Include="HomePage\js\jquery-3.0.0.min.js" />
+    <Content Include="HomePage\js\jquery.mCustomScrollbar.concat.min.js" />
+    <Content Include="HomePage\js\jquery.min.js" />
+    <Content Include="HomePage\js\jquery.validate.js" />
+    <Content Include="HomePage\js\plugin.js" />
+    <Content Include="HomePage\js\popper.min.js" />
     <Content Include="Login\css\style.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -298,11 +317,17 @@
     <Content Include="Views\Vehicles\Index.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
-    <Content Include="Views\Home\TList.cshtml" />
-    <Content Include="Views\Shared\_HomePartial.cshtml" />
+    <Content Include="Views\BodyTypes\Create.cshtml" />
+    <Content Include="Views\BodyTypes\Delete.cshtml" />
+    <Content Include="Views\BodyTypes\Details.cshtml" />
+    <Content Include="Views\BodyTypes\Edit.cshtml" />
+    <Content Include="Views\BodyTypes\Index.cshtml" />
+    <Content Include="Views\Transporters\TList.cshtml" />
+    <Content Include="Views\Vehicles\VList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assests\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

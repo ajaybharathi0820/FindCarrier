@@ -47,8 +47,6 @@ namespace FindCarrier.Models
         [NotMapped]
         public List<State> states { get; set; }
 
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<Vehicle> Vehicles { get; set; }
-        //public string UserId { get; internal set; }
+        
     }
 }

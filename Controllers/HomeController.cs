@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -13,33 +14,17 @@ namespace FindCarrier.Controllers
 
         public ActionResult Index()
         {
-           
-                ViewBag.CityID = new SelectList(db.Cities, "CityID", "CityName");
-                return View();
-           
-            
-        }
 
-        public ActionResult TList()
-        {
-            using(var database=new FindCarrierDbModel())
-            {
-                List<Transporter> transporter = database.Transporters.ToList();
-                return View(transporter);
-            }
-            
-          
-        }
-
-        public ActionResult Dashboard()
-        {
-            using (var db = new FindCarrierDbModel() )
-            {
-                var count = db.Transporters.SqlQuery("select * from Transporter").ToList();
-            }           
-
+            ViewBag.Search = new SelectList(db.Cities, "CityName", "CityName");
             return View();
+
+
         }
+
+        
+       
+        
+
 
         public ActionResult Contact()
         {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -15,12 +16,47 @@ namespace FindCarrier.Controllers
         private FindCarrierDbModel db = new FindCarrierDbModel();
 
         // GET: Vehicles
+        private Random randomnumber = new Random();
+
         public ActionResult Index()
         {
-            
-            var vehicles = db.Vehicles.Include(v => v.Transporter);
-            return View(vehicles.ToList());
+            if (this.User.IsInRole("Transporter"))
+            {
+                string UserID;
+                using (var UsersDb = new ApplicationDbContext())
+                {
+                    UserID = UsersDb.Users.ToList().Find(item => item.UserName == User.Identity.Name).Id;
+                }
+                return View(db.Vehicles.ToList().FindAll(item => item.UserId == UserID));
+
+
+            }
+
+            if (this.User.IsInRole("Admin"))
+            {               
+                return View(db.Vehicles.ToList());
+            }
+
+            return View();
         }
+
+        public ActionResult VList(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Transporter transporter = db.Transporters.Find(id);
+            var userId = transporter.UserId;
+            if (transporter == null)
+            {
+                return HttpNotFound();
+            }
+            return View(db.Vehicles.ToList().FindAll(item => item.UserId == userId));
+        }
+
+
+
 
         // GET: Vehicles/Details/5
         public ActionResult Details(int? id)
@@ -38,65 +74,65 @@ namespace FindCarrier.Controllers
         }
 
         // GET: Vehicles/Create
-        public ActionResult Create()
+        public ActionResult Create(Vehicle vehicle)
         {
-            ViewBag.TransporterID = new SelectList(db.Transporters, "TransporterID", "TransportName");
-            return View();
+            vehicle.bodyTypes = db.BodyTypes.ToList();
+
+            return View(vehicle);
         }
 
         // POST: Vehicles/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost,ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "VehicleID,VehicleName,VehicleNo,LoadCapacity,Amount,TransporterID")] Vehicle vehicle)
+        public ActionResult CreatePost([Bind(Include = "VehicleID,VehicleName,VehicleNo,BodyType,LoadCapacity,Amount,VehicleImage,UserId")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
+                string ImageName = vehicle.VehicleNo + randomnumber.Next() + Path.GetExtension(vehicle.UploadedImage.FileName);
+                vehicle.UploadedImage.SaveAs(Server.MapPath("~/assests/images/" + ImageName));
+                vehicle.VehicleImage = ImageName;
+                using (var db = new ApplicationDbContext())
+                {
+                    vehicle.UserId = db.Users.ToList().Find(item => item.UserName == User.Identity.Name).Id;
+                }
                 db.Vehicles.Add(vehicle);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            string UserId;
-            using (var UsersDb = new ApplicationDbContext())
-            {
-                UserId = UsersDb.Users.ToList().Find(item => item.UserName == User.Identity.Name).Id;
-                    }
-            var transporters = db.Transporters.ToList().FindAll(item => item.UserId == UserId);
-            ViewBag.TransporterID = new SelectList(transporters, "TransporterID", "TransportName", vehicle.TransporterID);
+            
             return View(vehicle);
         }
 
         // GET: Vehicles/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(Vehicle vehicle)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Vehicle vehicle = db.Vehicles.Find(id);
-            if (vehicle == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.TransporterID = new SelectList(db.Transporters, "TransporterID", "TransportName", vehicle.TransporterID);
+            vehicle.bodyTypes = db.BodyTypes.ToList();
+
             return View(vehicle);
         }
 
         // POST: Vehicles/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost,ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VehicleID,VehicleName,VehicleNo,LoadCapacity,Amount,TransporterID")] Vehicle vehicle)
+        public ActionResult EditPost([Bind(Include = "VehicleID,VehicleName,VehicleNo,BodyType,LoadCapacity,Amount,VehicleImage,UserId")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
+                if (vehicle.UploadedImage != null)
+                {
+                    FileInfo file = new FileInfo(Server.MapPath("~/assests/images/" + vehicle.VehicleImage));
+                    file.Delete();
+                    string ImageName = vehicle.VehicleNo + randomnumber.Next() + Path.GetExtension(vehicle.UploadedImage.FileName);
+                }
                 db.Entry(vehicle).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.TransporterID = new SelectList(db.Transporters, "TransporterID", "TransportName", vehicle.TransporterID);
+            //ViewBag.TransporterID = new SelectList(db.Transporters, "TransporterID", "TransportName", vehicle.TransporterID);
             return View(vehicle);
         }
 
@@ -123,6 +159,8 @@ namespace FindCarrier.Controllers
             Vehicle vehicle = db.Vehicles.Find(id);
             db.Vehicles.Remove(vehicle);
             db.SaveChanges();
+            FileInfo file = new FileInfo(Server.MapPath("~/assests/images/" + vehicle.VehicleImage));
+            file.Delete();
             return RedirectToAction("Index");
         }
 

@@ -27,13 +27,13 @@ nav.vertical ul li{	display:block;}/* vertical menu */
 nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
 img{max-width:100%;}
 /*-- end reset --*/
-body {  
-	font-family: 'Text Me One', sans-serif;
+body {
+	font-family: 'Poppins', sans-serif;
 	background: #673AB7;
 	background: -webkit-linear-gradient(to bottom right, #673AB7 50%, #6231b9 50%);
 	background: linear-gradient(to bottom right, #673AB7 50%, #6231b9 50%);
-	background-size:cover;
-	background-attachment: fixed; 
+	background-size: cover;
+	background-attachment: fixed;
 }
 h1 {
     font-size: 3em;

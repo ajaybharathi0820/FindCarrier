@@ -6,54 +6,133 @@
 <html>
 <head>
     <title>Home</title>
+    <!-- style css -->
+    <link rel="stylesheet" href="~/HomePage/css/style.css">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="~/HomePage/css/responsive.css">
+    <!-- fevicon -->
+    <link rel="icon" href="images/fevicon.png" type="image/gif" />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="~/HomePage/css/jquery.mCustomScrollbar.min.css">
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    
+
 </head>
 <body>
-    <div  style=" background-image: url('../../assests/images/CHome.jpg'); background-repeat:no-repeat">
+    <div style=" background-color: #673AB7">
         <div class="container center-block" style="text-align:center; color:white">
-            <br><br><br><br><br><br><br><br>
+            <br><br><br><br><br>
             <p style="font-size:70px;color:yellow">Welcome to Find Carrier..!</p>
-            <br>
+            <br><br><br>
 
             @if (Request.IsAuthenticated)
             {
                 if (this.User.IsInRole("Customer"))
                 {
-                    <p style="font-size:xx-large; color:gold">You Can Find Here</p>
-                    <p style="font-size:xx-large">
-                        Safe & Reliable Logistic solution.<br />
-                        The best logistic serive providers.
-                    </p>
-                    <div >
-                        @Html.Partial("_HomePartial")
+                    <div class="container">
+                        <div class="row d_flex">
+                            <div class="col-md-12">
+                                <div class="text-bg">
+                                    <h2>Find best carrier Here For rent</h2>
+                                    <span>You Can Find Here</span>
+                                    <p>
+                                        Safe & Reliable Logistic solution.The best logistic serive providers.
+                                    </p>
+                                    <div>
+                                        @using (@Html.BeginForm("TList", "Transporters"))
+                                        {
+                                            @Html.DropDownList("Search", null, "--Select Your City--", htmlAttributes: new { @class = "form-control  center-block padding-bottom:1em" })
+                                            <input type="submit" class="btn btn-danger" value="search" />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                 }
                 if (this.User.IsInRole("Transporter"))
                 {
-                    <p style="font-size:xx-large; color:gold">Grow your Business</p>
-                    <p style="font-size:xx-large">
-                        Lots of customer,Earn more<br />
-                        This is the best platform for your business.
-                    </p>
+
+                    <div class="container">
+                        <div class="row d_flex">
+                            <div class="col-md-12">
+                                <div class="text-bg">
+                                    <h1>Lots of customer,Earn more</h1>
+                                    <span>This is the best platform for your business.</span>
+                                    <a href="@Url.Action("Index", "Vehicles")">Manage Vehicles</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                if (this.User.IsInRole("Admin"))
+                {
 
                 }
 
             }
             else
             {
-                <p style="font-size:xx-large; color:gold">You Can Find Here</p>
-                <p style="font-size:xx-large">
-                    Safe & Reliable Logistic solution.<br />
-                    The best logistic serive providers.
-                </p>
-                <div>
-                    <p style="font-size:xx-large; color:yellow">Register Now to find your carrier</p>
-                    <a class="btn btn-warning btn-sm" href="@Url.Action("Register","Account")">Register</a>
+                <div class="container">
+                    <div class="row d_flex">
+                        <div class="col-md-12">
+                            <div class="text-bg">
+                                <h1>Find best carrier Here For rent</h1>
+                                <span>You Can Find Here</span>
+                                <p>
+                                    Safe & Reliable Logistic solution.The best logistic serive providers.
+                                </p>
+                                <a href="@Url.Action("Register","Account")">Register</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            }
 
-            <br><br><br><br><br><br><br><br><br><br><br><br>
+            }
+            
+            <div class="choose ">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="titlepage">
+                                <h2 style="color:gold">Why Choose Us</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="choose_box">
+                                <span>01</span>
+                                <p style="color:whitesmoke">Cost of Transport is affordable , you can find the carrier according to your budget. </p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="choose_box">
+                                <span>02</span>
+                                <p style="color:whitesmoke">Safety and security of goods in transit also influence which mode of transport to use.  </p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="choose_box">
+                                <span>03</span>
+                                <p style="color:whitesmoke">Transport modes differ in reliability and regularity. Your decision on which mode of transport to use will be influenced by the urgency and speed by which you would like your goods to be delivered.   </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br><br><br><br><br><br><br><br>
         </div>
     </div>
+
+   
+
+
+
+
 
 </body>
 </html>

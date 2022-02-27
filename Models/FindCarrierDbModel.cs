@@ -12,7 +12,7 @@ namespace FindCarrier.Models
         {
         }
 
-        //public virtual DbSet<BodyType> BodyTypes { get; set; }
+        public virtual DbSet<BodyType> BodyTypes { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         //public virtual DbSet<Material> Materials { get; set; }
         public virtual DbSet<State> States { get; set; }
@@ -22,10 +22,10 @@ namespace FindCarrier.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<BodyType>()
-            //    .Property(e => e.VehicleType)
-            //    .IsFixedLength()
-            //    .IsUnicode(false);
+            modelBuilder.Entity<BodyType>()
+                .Property(e => e.VehicleType)
+                .IsFixedLength()
+                .IsUnicode(false);
 
             modelBuilder.Entity<City>()
                 .Property(e => e.CityName)
@@ -76,10 +76,19 @@ namespace FindCarrier.Models
             modelBuilder.Entity<Vehicle>()
                 .Property(e => e.VehicleNo)
                 .IsUnicode(false);
+            
+            modelBuilder.Entity<Vehicle>()
+                .Property(e => e.BodyType)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Vehicle>()
                 .Property(e => e.Amount)
                 .HasPrecision(19, 4);
+
+            modelBuilder.Entity<Vehicle>()
+                .Property(e => e.VehicleImage)
+                .IsUnicode(false);
+
         }
     }
 }
