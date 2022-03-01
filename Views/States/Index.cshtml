@@ -24,8 +24,8 @@
             @Html.DisplayFor(modelItem => item.StateName)
         </td>
         <td>
-            <a class="btn btn-primary" href="@Url.Action("edit",item)">Edit</a>
-            <a class="btn btn-danger" href="@Url.Action("delete",item)">Delete</a>
+            <a class="btn btn-primary" href="@Url.Action("edit",new { id=item.StateID })">Edit</a>
+            <a class="btn btn-danger" href="@Url.Action("delete",new { id=item.StateID })">Delete</a>
         </td>
     </tr>
 }

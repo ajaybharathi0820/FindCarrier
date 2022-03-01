@@ -82,7 +82,7 @@ else
             <div class="d-flex justify-content-center row">
                 
                     <div class="row p-2 bg-white border rounded card vl" style=" padding: 25px 25px 25px 25px; background-color: #D7BDE2 ">
-                        <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="~/Images/@data.VehicleImage"></div>
+                        <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="~/assests/Images/@data.VehicleImage></div>
                         <div class="col-md-6 mt-1">
                             <h1 style="font-weight:600 ; text-transform:uppercase">@data.VehicleName</h1>
                             <div class="d-flex flex-row">
@@ -101,8 +101,8 @@ else
                             </div>
                             @if (this.User.IsInRole("Transporter"))
                             {
-                            <a class="btn btn-primary" href="@Url.Action("edit", data)">Edit</a>
-                            <a class="btn btn-danger" href="@Url.Action("Delete", data)">Delete</a>
+                            <a class="btn btn-primary" href="@Url.Action("edit",data)">Edit</a>
+                            <a class="btn btn-danger" href="@Url.Action("Delete", new { id=data.VehicleID})">Delete</a>
                             }
                         </div>
                     </div>

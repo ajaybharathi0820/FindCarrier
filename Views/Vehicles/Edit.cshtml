@@ -60,7 +60,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.VehicleImage, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <input type="file" class="form-control-file" name="VehicleImage" id="VehicleImage" onchange="previewFile(this)" @ViewBag.required />
+            <input type="file" class="form-control-file" name="UploadedImage" id="UploadedImage" onchange="previewFile(this)" @ViewBag.required />
             @Html.ValidationMessageFor(model => model.VehicleImage, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.UserId)
         </div>

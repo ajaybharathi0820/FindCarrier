@@ -4,13 +4,19 @@
     ViewBag.Title = "Index";
 }
 
+@*<style>
+    body{
+        background-color:;
+    }
+</style>*@
+
 <h2>Cities</h2>
 
 <p>
     <a class="btn btn-primary" href="@Url.Action("create")">Add new</a>
 
 </p>
-<table class="table table-bordered">
+<table class="table table-bordered ">
     <tr class="bg-primary">
         <th>
             @Html.DisplayNameFor(model => model.CityName)
@@ -24,8 +30,8 @@
             @Html.DisplayFor(modelItem => item.CityName)
         </td>
         <td>
-            <a class="btn btn-primary" href="@Url.Action("edit",item)">Edit</a>
-            <a class="btn btn-danger" href="@Url.Action("delete",item)">Delete</a>
+            <a class="btn btn-primary" href="@Url.Action("edit",new { id=item.CityID})">Edit</a>
+            <a class="btn btn-danger" href="@Url.Action("delete",new { id=item.CityID})">Delete</a>
         </td>
     </tr>
 }
