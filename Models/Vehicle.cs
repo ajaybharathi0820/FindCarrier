@@ -28,17 +28,12 @@ namespace FindCarrier.Models
         [Column(TypeName = "money")]
         public decimal Amount { get; set; }
 
-        [Required]
-        public string VehicleImage { get; set; }
-
+        
         public string UserId { get; set; }
 
         [NotMapped]
         public List<BodyType> bodyTypes { get; set; }
 
-        [NotMapped]
-
-        public HttpPostedFileBase UploadedImage { get; set; }
-        //public virtual Transporter Transporter { get; set; }
+        
     }
 }

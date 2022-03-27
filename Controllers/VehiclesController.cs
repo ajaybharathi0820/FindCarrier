@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -16,7 +17,6 @@ namespace FindCarrier.Controllers
         private FindCarrierDbModel db = new FindCarrierDbModel();
 
         // GET: Vehicles
-        private Random randomnumber = new Random();
 
         public ActionResult Index()
         {
@@ -84,15 +84,13 @@ namespace FindCarrier.Controllers
         // POST: Vehicles/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost,ActionName("Create")]
+        [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public ActionResult CreatePost([Bind(Include = "VehicleID,VehicleName,VehicleNo,BodyType,LoadCapacity,Amount,VehicleImage,UserId")] Vehicle vehicle)
+        public ActionResult CreatePost([Bind(Include = "VehicleID,VehicleName,VehicleNo,BodyType,LoadCapacity,Amount,UserId")] Vehicle vehicle)
         {
+            
             if (ModelState.IsValid)
             {
-                string ImageName = vehicle.VehicleNo + randomnumber.Next() + Path.GetExtension(vehicle.UploadedImage.FileName);
-                vehicle.UploadedImage.SaveAs(Server.MapPath("~/assests/images/" + ImageName));
-                vehicle.VehicleImage = ImageName;
                 using (var db = new ApplicationDbContext())
                 {
                     vehicle.UserId = db.Users.ToList().Find(item => item.UserName == User.Identity.Name).Id;
@@ -101,7 +99,8 @@ namespace FindCarrier.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            
+            vehicle.bodyTypes = db.BodyTypes.ToList();
+
             return View(vehicle);
         }
 
@@ -122,12 +121,7 @@ namespace FindCarrier.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (vehicle.UploadedImage != null)
-                {
-                    FileInfo file = new FileInfo(Server.MapPath("~/assests/images/" + vehicle.VehicleImage));
-                    file.Delete();
-                    string ImageName = vehicle.VehicleNo + randomnumber.Next() + Path.GetExtension(vehicle.UploadedImage.FileName);
-                }
+               
                 db.Entry(vehicle).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -159,8 +153,7 @@ namespace FindCarrier.Controllers
             Vehicle vehicle = db.Vehicles.Find(id);
             db.Vehicles.Remove(vehicle);
             db.SaveChanges();
-            FileInfo file = new FileInfo(Server.MapPath("~/assests/images/" + vehicle.VehicleImage));
-            file.Delete();
+            
             return RedirectToAction("Index");
         }
 

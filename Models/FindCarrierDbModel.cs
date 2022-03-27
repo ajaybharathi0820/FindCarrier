@@ -85,9 +85,7 @@ namespace FindCarrier.Models
                 .Property(e => e.Amount)
                 .HasPrecision(19, 4);
 
-            modelBuilder.Entity<Vehicle>()
-                .Property(e => e.VehicleImage)
-                .IsUnicode(false);
+            
 
         }
     }
